@@ -39,6 +39,13 @@ RUN { \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
+# set recommended PHP.ini settings for Wordpress
+RUN { \
+    echo 'post_max_size = 64M'; \
+    echo 'upload_max_filesize	= 128M'; \
+    echo 'max_execution_time = 300'; \
+	} > /usr/local/etc/php/conf.d/wordpress.ini
+
 RUN a2enmod rewrite expires
 
 VOLUME /var/www/html
